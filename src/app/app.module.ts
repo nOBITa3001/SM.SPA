@@ -15,6 +15,7 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MatchdaysComponent } from './matchdays/matchdays.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -30,7 +31,8 @@ export const jwtConfig = {
     AppComponent,
     NavComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    MatchdaysComponent
 ],
   imports: [
     BrowserModule,
