@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Leaderboard, Rank } from '../_models/leaderboard';
-import { Pagination, PaginatedResult } from '../_models/pagination';
-import { LeaderboardService } from '../_services/leaderboard.service';
-import { AlertifyService } from '../_services/alertify.service';
+import { Leaderboard, Rank } from '../../_models/leaderboard';
+import { Pagination, PaginatedResult } from '../../_models/pagination';
+import { LeaderboardService } from '../../_services/leaderboard.service';
+import { AlertifyService } from '../../_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-leaderboards',
-  templateUrl: './leaderboards.component.html',
-  styleUrls: ['./leaderboards.component.css']
+  selector: 'app-leaderboard-list',
+  templateUrl: './leaderboard-list.component.html',
+  styleUrls: ['./leaderboard-list.component.css']
 })
-export class LeaderboardsComponent implements OnInit {
+export class LeaderboardListComponent implements OnInit {
   leaderboards: Leaderboard[];
   pagination: Pagination;
 
@@ -58,3 +58,4 @@ export class LeaderboardsComponent implements OnInit {
     this.load();
   }
 }
+
