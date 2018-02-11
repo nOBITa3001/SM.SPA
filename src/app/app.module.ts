@@ -19,6 +19,8 @@ import { LeaderboardsComponent } from './leaderboards/leaderboards.component';
 import { MatchdayService } from './_services/matchday.service';
 import { MatchdayListResolver } from './_resolvers/matchday-list.resolver';
 import { MatchdayListComponent } from './matchdays/matchday-list/matchday-list.component';
+import { LeaderboardService } from './_services/leaderboard.service';
+import { LeaderboardListResolver } from './_resolvers/leaderboard-list.resolver';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -54,7 +56,9 @@ export const jwtConfig = {
     AlertifyService,
     AuthGuard,
     MatchdayService,
-    MatchdayListResolver
+    MatchdayListResolver,
+    LeaderboardService,
+    LeaderboardListResolver
   ],
   bootstrap: [AppComponent]
 })

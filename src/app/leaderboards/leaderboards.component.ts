@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Leaderboard, Rank } from '../_models/leaderboard';
+import { Pagination, PaginatedResult } from '../_models/pagination';
+import { LeaderboardService } from '../_services/leaderboard.service';
+import { AlertifyService } from '../_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-leaderboards',
@@ -8,6 +12,7 @@ import { Leaderboard, Rank } from '../_models/leaderboard';
 })
 export class LeaderboardsComponent implements OnInit {
   leaderboards: Leaderboard[];
+  pagination: Pagination;
 
   private pointCssClasses: any = {
     1: 'table-success',
@@ -17,60 +22,16 @@ export class LeaderboardsComponent implements OnInit {
     5: 'table-danger'
   };
 
-  constructor() { }
+  constructor(
+    private leaderboardService: LeaderboardService,
+    private alertify: AlertifyService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.leaderboards = [{
-      'id': 0,
-      'title': 'BU: 147',
-      'ranks': [{
-          'sequence': 1,
-          'user': 'Nut',
-          'totalPoint': 2,
-          'totalGame': 2,
-          'winningRate': ((2 / 2) * 100),
-          'totalCorrectScore': 0,
-          'totalCorrectResult': 2,
-          'totalWrong': 0
-      }, {
-        'sequence': 2,
-        'user': 'Sun',
-        'totalPoint': 2,
-        'totalGame': 2,
-        'winningRate': ((2 / 2) * 100),
-        'totalCorrectScore': 0,
-        'totalCorrectResult': 2,
-        'totalWrong': 0
-      }, {
-        'sequence': 3,
-        'user': 'Boss',
-        'totalPoint': 1,
-        'totalGame': 2,
-        'winningRate': ((1 / 2) * 100),
-        'totalCorrectScore': 0,
-        'totalCorrectResult': 1,
-        'totalWrong': 1
-      }, {
-        'sequence': 4,
-        'user': 'No',
-        'totalPoint': 1,
-        'totalGame': 2,
-        'winningRate': ((1 / 2) * 100),
-        'totalCorrectScore': 0,
-        'totalCorrectResult': 1,
-        'totalWrong': 1
-      }, {
-        'sequence': 5,
-        'user': 'Yong',
-        'totalPoint': 1,
-        'totalGame': 2,
-        'winningRate': ((1 / 2) * 100),
-        'totalCorrectScore': 0,
-        'totalCorrectResult': 1,
-        'totalWrong': 1
-      }]
-     }
-  ];
+    this.route.data.subscribe(data => {
+      this.leaderboards = data['leaderboards'].result;
+      this.pagination = data['leaderboards'].pagination;
+    });
   }
 
   getRakingRowClass(rank: Rank): string {
@@ -80,5 +41,20 @@ export class LeaderboardsComponent implements OnInit {
     }
 
     return result;
+  }
+
+  load() {
+    this.leaderboardService.getLeaderboards(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .subscribe((res: PaginatedResult<Leaderboard[]>) => {
+        this.leaderboards = res.result;
+        this.pagination = res.pagination;
+      }, error => {
+        this.alertify.error(error);
+      });
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.load();
   }
 }
