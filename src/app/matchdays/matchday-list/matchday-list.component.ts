@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Matchday } from '../_models/matchday';
-import { AlertifyService } from '../_services/alertify.service';
+import { Matchday } from '../../_models/matchday';
+import { AlertifyService } from '../../_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatchdayService } from '../_services/matchday.service';
-import { Pagination, PaginatedResult } from '../_models/pagination';
-import { Prediction } from '../_models/prediction';
+import { MatchdayService } from '../../_services/matchday.service';
+import { Pagination, PaginatedResult } from '../../_models/pagination';
+import { Prediction } from '../../_models/prediction';
 
 @Component({
-  selector: 'app-matchdays',
-  templateUrl: './matchdays.component.html',
-  styleUrls: ['./matchdays.component.css']
+  selector: 'app-matchday-list',
+  templateUrl: './matchday-list.component.html',
+  styleUrls: ['./matchday-list.component.css']
 })
-export class MatchdaysComponent implements OnInit {
+export class MatchdayListComponent implements OnInit {
   matchdays: Matchday[];
   pagination: Pagination;
 

@@ -15,10 +15,10 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import { MatchdaysComponent } from './matchdays/matchdays.component';
 import { LeaderboardsComponent } from './leaderboards/leaderboards.component';
 import { MatchdayService } from './_services/matchday.service';
 import { MatchdayListResolver } from './_resolvers/matchday-list.resolver';
+import { MatchdayListComponent } from './matchdays/matchday-list/matchday-list.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -35,7 +35,7 @@ export const jwtConfig = {
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    MatchdaysComponent,
+    MatchdayListComponent,
     LeaderboardsComponent
 ],
   imports: [
