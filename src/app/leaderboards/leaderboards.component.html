@@ -1,81 +1,41 @@
 <div class="main container">
-    <div class="row">
-      <h1>BU 147</h1>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Point</th>
-            <th scope="col">Game</th>
-            <th scope="col">3</th>
-            <th scope="col">2</th>
-            <th scope="col">1</th>
-            <th scope="col">0</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-success">
-            <td>1</td>
-            <td>Sun</td>
-            <td>3</td>
-            <td>2</td>
-            <td>0</td>
-            <td>1</td>
-            <td>1</td>
-            <td>0</td>
-          </tr>
-          <tr class="table-info">
-            <td>2</td>
-            <td>Nut</td>
-            <td>3</td>
-            <td>2</td>
-            <td>0</td>
-            <td>1</td>
-            <td>1</td>
-            <td>0</td>
-          </tr>
-          <tr class="table-light">
-            <td>3</td>
-            <td>Boss</td>
-            <td>1</td>
-            <td>2</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-          </tr>
-          <tr class="table-warning">
-            <td>4</td>
-            <td>No</td>
-            <td>1</td>
-            <td>2</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-          </tr>
-          <tr class="table-danger">
-            <td>5</td>
-            <td>Yong</td>
-            <td>1</td>
-            <td>2</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-          </tr>
-          <tr class="table-dark">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div *ngFor="let leaderboard of leaderboards" class="row col-xs-12">
+    <h1>{{leaderboard.title}}</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Point</th>
+          <th scope="col">Game</th>
+          <th scope="col">Winning rate</th>
+          <th scope="col">3</th>
+          <th scope="col">1</th>
+          <th scope="col">0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rank of leaderboard.ranks" [ngClass]="getRakingRowClass(rank)">
+          <th scope="row">{{rank.sequence}}</th>
+          <td>{{rank.user}}</td>
+          <td>{{rank.totalPoint}}</td>
+          <td>{{rank.totalGame}}</td>
+          <td>{{rank.winningRate}} %</td>
+          <td>{{rank.totalCorrectScore}}</td>
+          <td>{{rank.totalCorrectResult}}</td>
+          <td>{{rank.totalWrong}}</td>
+        </tr>
+        <tr class="table-dark">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
