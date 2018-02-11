@@ -39,7 +39,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let prediction of predictor.predictions" [ngClass]="getPredictionRowClass(prediction)">
-              <th scope="row">{{prediction.home}} vs {{prediction.away}}</th>
+              <th scope="row">{{prediction.homeAbbreviation}} vs {{prediction.awayAbbreviation}}</th>
               <td>{{prediction.result}}</td>
               <td>{{prediction.point}}</td>
             </tr>

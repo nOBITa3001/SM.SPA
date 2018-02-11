@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatchdaysComponent } from './matchdays/matchdays.component';
 import { LeaderboardsComponent } from './leaderboards/leaderboards.component';
+import { MatchdayService } from './_services/matchday.service';
+import { MatchdayListResolver } from './_resolvers/matchday-list.resolver';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -50,7 +52,9 @@ export const jwtConfig = {
   providers: [
     AuthService,
     AlertifyService,
-    AuthGuard
+    AuthGuard,
+    MatchdayService,
+    MatchdayListResolver
   ],
   bootstrap: [AppComponent]
 })
