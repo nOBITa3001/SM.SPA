@@ -28,7 +28,7 @@
 
     <div class="row">
       <div *ngFor="let predictor of matchday.predictors" class="col-lg-4 col-md-6 col-xs-12">
-        <h2>{{predictor.user}}</h2>
+        <h2>{{predictor.user | titlecase}}</h2>
         <table class="table table-sm table-hover">
           <thead>
             <tr>
@@ -52,5 +52,7 @@
         </table>
       </div>
     </div>
+
+    <hr />
   </div>
 </div>
